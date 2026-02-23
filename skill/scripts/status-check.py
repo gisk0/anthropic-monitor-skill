@@ -21,7 +21,7 @@ from pathlib import Path
 SKILL_DIR = Path.home() / ".openclaw/skills/claude-watchdog"
 ENV_FILE = SKILL_DIR / "claude-watchdog.env"
 STATE_FILE = SKILL_DIR / "claude-watchdog-status.json"
-LOG_FILE = SKILL_DIR / "anthropic-status.log"
+LOG_FILE = SKILL_DIR / "claude-watchdog-status.log"
 STATUS_API = "https://status.claude.com/api/v2/summary.json"
 
 
