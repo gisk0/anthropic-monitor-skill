@@ -1,6 +1,14 @@
 ---
 name: claude-watchdog
 description: Monitor the Claude API for outages and latency spikes with rich Telegram alerts. Status monitoring, latency probes, and automatic recovery notifications.
+homepage: https://github.com/gisk0/claude-watchdog
+metadata:
+  openclaw:
+    emoji: "🐕"
+    requires:
+      bins: [python3, crontab, curl]
+      env: [TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, OPENCLAW_GATEWAY_TOKEN]
+    primaryEnv: TELEGRAM_BOT_TOKEN
 ---
 
 # Claude Watchdog 🐕
