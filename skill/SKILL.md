@@ -126,8 +126,8 @@ All state and log files are stored in `~/.openclaw/skills/claude-watchdog/`:
 |------|---------|
 | `claude-watchdog-status.json` | Status check state |
 | `claude-watchdog-latency.json` | Latency probe state & samples |
-| `anthropic-status.log` | Status check log |
-| `anthropic-latency.log` | Latency probe log |
+| `claude-watchdog-status.log` | Status check log |
+| `claude-watchdog-latency.log` | Latency probe log |
 
 ## Tuning Thresholds
 
