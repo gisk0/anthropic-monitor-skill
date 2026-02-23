@@ -6,7 +6,7 @@ set -euo pipefail
 SKILL_DATA_DIR="$HOME/.openclaw/skills/anthropic-monitor"
 ENV_FILE="$SKILL_DATA_DIR/anthropic-monitor.env"
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-PYTHON3="$(which python3)"
+PYTHON3="$(command -v python3)"
 
 # ── uninstall ─────────────────────────────────────────────────────────────────
 
@@ -46,7 +46,8 @@ echo ""
 
 # 1. Telegram Bot Token
 echo "Telegram Bot Token (get from @BotFather on Telegram):"
-read -rp "> " bot_token
+read -rsp "> " bot_token
+echo ""
 if [[ -z "$bot_token" ]]; then
     echo "ERROR: Bot token is required." >&2
     exit 1
@@ -67,7 +68,8 @@ echo ""
 echo "OpenClaw Gateway Token (find with:"
 echo "  python3 -c \"from pathlib import Path; import json; print(json.load(open(Path.home() / '.openclaw/openclaw.json'))['gateway']['auth']['token'])\""
 echo "):"
-read -rp "> " gw_token
+read -rsp "> " gw_token
+echo ""
 if [[ -z "$gw_token" ]]; then
     echo "ERROR: Gateway token is required." >&2
     exit 1
