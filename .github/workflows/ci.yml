@@ -1,0 +1,16 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SkillGuard scan
+        run: |
+          git clone https://github.com/gisk0/skillguard-scanner.git /tmp/skillguard
+          python3 /tmp/skillguard/scripts/scanner.py --skills-dir . --skill claude-watchdog
