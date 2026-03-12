@@ -25,7 +25,7 @@ from pathlib import Path
 SKILL_DIR = Path.home() / ".openclaw/skills/claude-watchdog"
 ENV_FILE = SKILL_DIR / "claude-watchdog.env"
 STATE_FILE = SKILL_DIR / "claude-watchdog-latency.json"
-LOG_FILE = SKILL_DIR / "claude-watchdog-latency.log"
+LOG_FILE = SKILL_DIR / "anthropic-latency.log"
 
 PROBE_TIMEOUT = 45
 BASELINE_MIN_SAMPLES = 5
@@ -145,10 +145,11 @@ def save_state(state: dict):
 # ── probe ─────────────────────────────────────────────────────────────────────
 
 
-def probe_api() -> tuple:
+def probe_anthropic() -> tuple:
     payload = json.dumps({
         "model": PROBE_MODEL,
-        "messages": [{"role": "user", "content": "Reply OK"}]
+        "messages": [{"role": "user", "content": "Reply OK"}],
+        "user": "claude-watchdog-probe"  # stable user → reuses same gateway session
     }).encode()
     headers = {
         "Authorization": f"Bearer {GATEWAY_TOKEN}",
@@ -179,7 +180,7 @@ def main():
     alerted = state.get("alerted", False)
     alert_latency = state.get("alert_latency")
 
-    latency, status = probe_api()
+    latency, status = probe_anthropic()
 
     if latency is None:
         if status == "timeout":
